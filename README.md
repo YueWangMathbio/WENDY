@@ -1,6 +1,7 @@
 # WENDY
 code files for WENDY method, used for inferring gene regulatory networks (GRN) from single-cell gene expression data
 
+-----------------------------------------------------------
 major code files:
 
 wendy_tutorial.py: a tutorial for using WENDY method
@@ -9,7 +10,7 @@ wendy_alg.py: main function of WENDY method, used for testing
 
 wendy_solver.py: the numerical solver used in WENDY method
 
-
+-----------------------------------------------------------
 code files for comparing different methods:
 
 SINC_comparison.py: used to compare different methods on SINC data
@@ -18,7 +19,7 @@ DREAM4_comparison.py: used to compare different methods on DREAM4 data
 
 time_comparison.py: used to compare time costs of different methods
 
-
+-----------------------------------------------------------
 code for other methods, for comparison:
 
 sincerities.py: code for SINCERITIES method
@@ -29,14 +30,14 @@ GENIE3.py: code for GENIE3 method
 
 dynGENIE3.py: code for dynGENIE3 method
 
-
+-----------------------------------------------------------
 auxiliary code files:
 
 data_generation.py: generate test data
 
 evaluation.py: evaluate inferred GRNs
 
-
+-----------------------------------------------------------
 data sets:
 
 folder GRN: GRNs from https://academic.oup.com/bioinformatics/article/34/2/258/4158033
@@ -49,8 +50,7 @@ has 10 numpy matrices (GRNs) DREAM4_A....npy and 10 numpy matrices (expression d
 
 example_data_0.npy, example_data_1.npy: two example data sets, used for wendy_tutorial.py
 
-
-
+-----------------------------------------------------------
 experimental data and code:
 
 exp_data.py: calculate GRNs from experimental data
