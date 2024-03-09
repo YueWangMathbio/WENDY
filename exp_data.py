@@ -1,11 +1,13 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
-for three experimental data sets, use WENDY method to calculate the GRN
-between each neighboring pair of time points.
-then draw the GRN
+Created on Tue Feb 27 16:03:22 2024
+
+@author: yuewang
 """
 
 import numpy as np
-from wendy_alg import wendy_alg
+from wendy_var import wendy_alg
 from graphviz import Digraph
 
 for dataset in range(3):
@@ -63,25 +65,30 @@ for dataset in range(3):
     acc = np.zeros((gene_num, gene_num))
     for i in range(n_tp-1):
         temp = wendy_alg(exp[i], exp[i+1]) # use WENDY to calculate the GRN
+        #print(temp)
         wendy.append(temp)
         reg = []
         acc += np.abs(temp)
     total = []
     for p in range(gene_num):
         for q in range(gene_num):
+            if p == q:
+                continue
             total.append([acc[p, q], p, q])
     total.sort(reverse=True, key=lambda x:x[0])
     strong = set()
-    for w in total[:20]:
-        if (w[2], w[1]) not in strong: # top 20 edges
+    for w in total:
+        if (w[2], w[1]) not in strong: # top 15 edges
             strong.add((w[1], w[2]))
+        if len(strong) == 15:
+            break
     gene_names = set()
     for [x,y] in strong:
         gene_names.add(tf[x])
         gene_names.add(tf[y])
     gene_names = list(gene_names)
     gs = ', '.join(gene_names)
-    print(gs) # genes considered
+    print(gs)
     
     for i in range(n_tp-1): # use graphviz to draw the GRN
         dot = Digraph()
@@ -95,6 +102,7 @@ for dataset in range(3):
                          penwidth=str(10*np.abs(wendy[i][x, y])))    
             else:
                 dot.edge(tf[x], tf[y], penwidth=str(0), arrowsize=str(0))
+        #dot.view()
         filename = 'Experimental data/Exp GRN/GRN_data%d_time%d' % (dataset, i)
         file_ext = 'png'
-        dot.render(filename, format=file_ext, view=False) # save the GRN figure
+        dot.render(filename, format=file_ext, view=False)

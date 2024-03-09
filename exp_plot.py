@@ -1,5 +1,9 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
-this code combines different GRNs from experimental data
+Created on Wed Mar  6 15:27:56 2024
+
+@author: yuewang
 """
 
 import matplotlib.pyplot as plt 
@@ -13,22 +17,22 @@ f3 = img.imread('Experimental data/Exp GRN/GRN_data0_time3.png')
 fz = 8
 plt.figure(1)
 ax = plt.subplot(4, 1, 1)
-ax.set_title("from t=0h to t=12h", fontsize=fz)
+ax.set_title("from t=0h to t=12h", fontsize=fz, loc='left')
 plt.imshow(f0)
 plt.axis('off')
 ax = plt.subplot(4, 1, 2)
-ax.set_title("from t=12h to t=24h", fontsize=fz)
+ax.set_title("from t=12h to t=24h", fontsize=fz, loc='left')
 plt.imshow(f1)
 plt.axis('off')
 ax = plt.subplot(4, 1, 3)
-ax.set_title("from t=24h to t=48h", fontsize=fz)
+ax.set_title("from t=24h to t=48h", fontsize=fz, loc='left')
 plt.imshow(f2)
 plt.axis('off')
 ax = plt.subplot(4, 1, 4)
-ax.set_title("from t=48h to t=72h", fontsize=fz)
+ax.set_title("from t=48h to t=72h", fontsize=fz, loc='left')
 plt.imshow(f3)
 plt.axis('off')
-plt.subplots_adjust(wspace=0, hspace=0)
+plt.subplots_adjust(wspace=0, hspace=0.2)
 plt.savefig('grn0.png', dpi=600, bbox_inches='tight')
 plt.show()
 
@@ -40,7 +44,7 @@ f2 = img.imread('Experimental data/Exp GRN/GRN_data1_time2.png')
 f3 = img.imread('Experimental data/Exp GRN/GRN_data1_time3.png') 
 
 fz = 12
-plt.figure(1, figsize=(8,8))
+plt.figure(1, figsize=(7,8))
 ax = plt.subplot(2, 2, 1)
 ax.set_title("from t=0d to t=2d", fontsize=fz)
 plt.imshow(f0)
@@ -70,28 +74,28 @@ f3 = img.imread('Experimental data/Exp GRN/GRN_data2_time3.png')
 f4 = img.imread('Experimental data/Exp GRN/GRN_data2_time4.png') 
 
 fz = 12
-plt.figure(1, figsize=(8,8))
-ax = plt.subplot(3, 2, 1)
+plt.figure(1, figsize=(7,6))
+ax = plt.subplot(2, 3, 1)
 ax.set_title("from t=0h to t=12h", fontsize=fz)
 plt.imshow(f0)
 plt.axis('off')
-ax = plt.subplot(3, 2, 2)
+ax = plt.subplot(2, 3, 2)
 ax.set_title("from t=12h to t=24h", fontsize=fz)
 plt.imshow(f1)
 plt.axis('off')
-ax = plt.subplot(3, 2, 3)
+ax = plt.subplot(2, 3, 3)
 ax.set_title("from t=24h to t=36h", fontsize=fz)
 plt.imshow(f2)
 plt.axis('off')
-ax = plt.subplot(3, 2, 4)
+ax = plt.subplot(2, 3, 4)
 ax.set_title("from t=36h to t=72h", fontsize=fz)
 plt.imshow(f3)
 plt.axis('off')
-ax = plt.subplot(3, 2, 5)
+ax = plt.subplot(2, 3, 5)
 ax.set_title("from t=72h to t=96h", fontsize=fz)
 plt.imshow(f3)
 plt.axis('off')
-plt.subplots_adjust(wspace=0.1, hspace=0)
+plt.subplots_adjust(wspace=0.15, hspace=0.0)
 plt.savefig('grn2.png', dpi=600, bbox_inches='tight')
 plt.show()
 
