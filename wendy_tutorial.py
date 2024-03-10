@@ -9,6 +9,8 @@ time points is unknown.
 from sklearn.covariance import GraphicalLassoCV
 from wendy_solver import RegRelSolver
 import numpy as np
+import warnings
+warnings.filterwarnings("ignore") # use this to ignore warnings
 
 def wendy_alg(data0, data1, user_mask=None): # each of input data is numpy array or 
 # similar array, with the shape of cell number * gene number
@@ -31,6 +33,8 @@ def wendy_alg(data0, data1, user_mask=None): # each of input data is numpy array
 """
 if you have raw single-cell RNA sequencing (scRNAseq) data:
 use scanpy or other packages to extract expression data at each time point.
+remove genes that only appear in a few cells, and cells that only a few genes
+are measured.
 replace each value x by log(1+x).
 for each cell (row), normalize its sum, so that each cell has the same 
 total expression level. 

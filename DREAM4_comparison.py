@@ -9,7 +9,8 @@ import numpy as np
 from xgbgrn import get_importances
 from GENIE3 import GENIE3
 from dynGENIE3 import dynGENIE3
-
+import warnings
+warnings.filterwarnings("ignore")
 
 for dataset in range(2):
     AUROC = [0.0] * 5
@@ -25,8 +26,8 @@ for dataset in range(2):
         sim_num = data.shape[1]
         
         if gene_num == 10:
-            wt0 = 2
-            wt1 = 10
+            wt0 = 9
+            wt1 = 17
             st0 = 2
             st1 = 7
             nt0 = 6
@@ -77,7 +78,7 @@ for dataset in range(2):
         
         dg_data = data[dt0:dt1+1]
         dg_time = np.linspace(dt0*50, dt1*50, dt1-dt0+1)
-        dg_data_full = [data[:, i, :] for i in range(sim_num)]
+        dg_data_full = [dg_data[:, i, :] for i in range(sim_num)]
         dg_time_full = [dg_time for i in range(sim_num)]
         dg3 = dynGENIE3(dg_data_full, dg_time_full)
         aurocp, auprp = directed_evaluation(A, dg3)

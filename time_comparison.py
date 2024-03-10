@@ -9,6 +9,8 @@ from xgbgrn import get_importances
 import time
 from GENIE3 import GENIE3
 from dynGENIE3 import dynGENIE3
+import warnings
+warnings.filterwarnings("ignore")
 
 time_points = np.linspace(0.00, 3.00, 11) # generate data at these time points
 sim_num = 100 # number of cells/simulation trajectories

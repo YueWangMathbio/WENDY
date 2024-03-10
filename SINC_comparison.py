@@ -22,10 +22,8 @@ warnings.filterwarnings("ignore")
 def wendy_wrap(unused_index, network, sim_num, time_points):
     del unused_index
     A, data = generation(network, time_points, sim_num)
-    t0 = 0
-    t1 = 1
-    wendy = wendy_alg(data[t0, data[t1]])
-    auroc_dir_wendy, aupr_dir_wendy = directed_evaluation(A, wendy, print_res=False)
+    wendy = wendy_alg(data[0], data[1])
+    auroc_dir_wendy, aupr_dir_wendy = directed_evaluation(A, wendy)
     return auroc_dir_wendy, aupr_dir_wendy
 
 def wendy_rep(rep, net_num, sim_num, time_points):
@@ -38,7 +36,7 @@ def sinc_wrap(unused_index, network, sim_num, time_points):
     del unused_index
     A, data = generation(network, time_points, sim_num)
     sinc = sincer(data, time_points)
-    auroc_dir_sinc, aupr_dir_sinc = directed_evaluation(A, sinc, print_res=False)
+    auroc_dir_sinc, aupr_dir_sinc = directed_evaluation(A, sinc)
     return auroc_dir_sinc, aupr_dir_sinc
 
 def sinc_rep(rep, net_num, sim_num, time_points):
@@ -53,7 +51,7 @@ def nlode_wrap(unused_index, network, sim_num, time_points):
     bulk_data = [np.average(data[:, :sim_num//2, :], axis=1), np.average(data[:, sim_num//2:, :], axis=1)]
     nl_time = [np.arange(len(time_points))] * 2
     nlode = get_importances(bulk_data, nl_time, alpha='from_data')
-    auroc_dir_nlode, aupr_dir_nlode = directed_evaluation(A, nlode, print_res=False)
+    auroc_dir_nlode, aupr_dir_nlode = directed_evaluation(A, nlode)
     return auroc_dir_nlode, aupr_dir_nlode
 
 def nlode_rep(rep, net_num, sim_num, time_points):
@@ -69,7 +67,7 @@ def genie_wrap(unused_index, network, sim_num, time_points):
     genie = GENIE3(data[t])
     cov_sign = np.sign(np.cov(data[t].T))
     genie = np.multiply(genie, cov_sign)
-    auroc_dir_genie, aupr_dir_genie = directed_evaluation(A, genie, print_res=False)
+    auroc_dir_genie, aupr_dir_genie = directed_evaluation(A, genie)
     return auroc_dir_genie, aupr_dir_genie
 
 def genie_rep(rep, net_num, sim_num, time_points):
@@ -86,7 +84,7 @@ def dg_wrap(unused_index, network, sim_num, time_points):
     dg = dynGENIE3(dg_data, dg_time)
     cov_sign = np.sign(np.cov(data[len(time_points)-1].T))
     dg = np.multiply(dg, cov_sign)
-    auroc_dir_dg, aupr_dir_dg = directed_evaluation(A, dg, print_res=False)
+    auroc_dir_dg, aupr_dir_dg = directed_evaluation(A, dg)
     return auroc_dir_dg, aupr_dir_dg
 
 def dg_rep(rep, net_num, sim_num, time_points):
@@ -113,15 +111,19 @@ def main():
     print('sim_num= ', sim_num)
     
     
-    time_points = np.linspace(0.0, 0.6, 2)
-    print('time_points: ', time_points)
-    start_time = time.time()    
-    res = wendy_rep(rep, net_num, sim_num, time_points)
-    wendy = res_process(res, rep, net_num)
-    print('wendy, auroc_10, aupr_10, auroc_20, aupr_20')
-    print(wendy)
-    end_time = time.time()
-    print(end_time-start_time)
+    for i in range(2):
+        if i == 0:
+            time_points = np.linspace(0.0, 3.0, 2)
+        if i == 1:
+            time_points = np.linspace(2.7, 3.0, 2)
+        print('time_points: ', time_points)
+        start_time = time.time()    
+        res = wendy_rep(rep, net_num, sim_num, time_points)
+        wendy = res_process(res, rep, net_num)
+        print('wendy, auroc_10, aupr_10, auroc_20, aupr_20')
+        print(wendy)
+        end_time = time.time()
+        print(end_time-start_time)
     
     for i in range(2):
         if i == 0:
