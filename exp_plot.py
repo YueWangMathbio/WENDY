@@ -1,9 +1,5 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
-Created on Wed Mar  6 15:27:56 2024
-
-@author: yuewang
+this code combines different GRNs from experimental data
 """
 
 import matplotlib.pyplot as plt 
@@ -14,7 +10,7 @@ f1 = img.imread('Experimental data/Exp GRN/GRN_data0_time1.png')
 f2 = img.imread('Experimental data/Exp GRN/GRN_data0_time2.png') 
 f3 = img.imread('Experimental data/Exp GRN/GRN_data0_time3.png') 
 
-fz = 8
+fz = 4
 plt.figure(1)
 ax = plt.subplot(4, 1, 1)
 ax.set_title("from t=0h to t=12h", fontsize=fz, loc='left')
@@ -32,7 +28,7 @@ ax = plt.subplot(4, 1, 4)
 ax.set_title("from t=48h to t=72h", fontsize=fz, loc='left')
 plt.imshow(f3)
 plt.axis('off')
-plt.subplots_adjust(wspace=0, hspace=0.2)
+plt.subplots_adjust(wspace=0, hspace=0.3)
 plt.savefig('grn0.png', dpi=600, bbox_inches='tight')
 plt.show()
 
@@ -73,7 +69,7 @@ f2 = img.imread('Experimental data/Exp GRN/GRN_data2_time2.png')
 f3 = img.imread('Experimental data/Exp GRN/GRN_data2_time3.png') 
 f4 = img.imread('Experimental data/Exp GRN/GRN_data2_time4.png') 
 
-fz = 12
+fz = 9
 plt.figure(1, figsize=(7,6))
 ax = plt.subplot(2, 3, 1)
 ax.set_title("from t=0h to t=12h", fontsize=fz)

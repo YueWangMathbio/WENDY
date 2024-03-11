@@ -1,13 +1,14 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
-Created on Tue Feb 27 16:03:22 2024
+for three experimental data sets, use WENDY method to calculate the GRN
+between each neighboring pair of time points.
+then draw the GRN
 
-@author: yuewang
+notice that using the same code, the final plot might differ in different
+computers
 """
 
 import numpy as np
-from wendy_var import wendy_alg
+from wendy_alg import wendy_alg
 from graphviz import Digraph
 
 for dataset in range(3):
@@ -65,7 +66,6 @@ for dataset in range(3):
     acc = np.zeros((gene_num, gene_num))
     for i in range(n_tp-1):
         temp = wendy_alg(exp[i], exp[i+1]) # use WENDY to calculate the GRN
-        #print(temp)
         wendy.append(temp)
         reg = []
         acc += np.abs(temp)
@@ -88,7 +88,7 @@ for dataset in range(3):
         gene_names.add(tf[y])
     gene_names = list(gene_names)
     gs = ', '.join(gene_names)
-    print(gs)
+    print(gs) # genes considered
     
     for i in range(n_tp-1): # use graphviz to draw the GRN
         dot = Digraph()
@@ -102,7 +102,6 @@ for dataset in range(3):
                          penwidth=str(10*np.abs(wendy[i][x, y])))    
             else:
                 dot.edge(tf[x], tf[y], penwidth=str(0), arrowsize=str(0))
-        #dot.view()
         filename = 'Experimental data/Exp GRN/GRN_data%d_time%d' % (dataset, i)
         file_ext = 'png'
-        dot.render(filename, format=file_ext, view=False)
+        dot.render(filename, format=file_ext, view=False) # save the GRN figure
