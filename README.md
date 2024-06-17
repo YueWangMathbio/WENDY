@@ -19,6 +19,10 @@ DREAM4_comparison.py: used to compare different methods on DREAM4 data
 
 time_comparison.py: used to compare time costs of different methods
 
+THP1_comparison.py: used to compare different methods on THP-1 data
+
+hESC_comparison.py: used to compare different methods on hESC data
+
 -----------------------------------------------------------
 code for other methods, for comparison:
 
@@ -40,39 +44,12 @@ evaluation.py: evaluate inferred GRNs
 -----------------------------------------------------------
 data sets:
 
-folder GRN: GRNs from https://academic.oup.com/bioinformatics/article/34/2/258/4158033
+folder SINC: GRNs from https://academic.oup.com/bioinformatics/article/34/2/258/4158033, has 40 numpy matrices (GRNs)
 
-has 40 numpy matrices (GRNs)
-
-folder DREAM4: GRNs and corresponding expression data from https://www.synapse.org/#!Synapse:syn3049712/wiki/74628
-
-has 10 numpy matrices (GRNs) DREAM4_A....npy and 10 numpy matrices (expression data) DREAM4_data....npy
+folder DREAM4: GRNs and corresponding expression data from https://www.synapse.org/#!Synapse:syn3049712/wiki/74628, has 10 numpy matrices (GRNs) DREAM4_A....npy and 10 numpy matrices (expression data) DREAM4_data....npy
 
 example_data_0.npy, example_data_1.npy: two example data sets, used for wendy_tutorial.py
 
------------------------------------------------------------
-experimental data and code:
+folder THP1: GRN (THP1_A.npy) and corresponding expression data (THP1_data.npy) from https://link.springer.com/article/10.1186/gb-2013-14-10-r118
 
-exp_data.py: calculate GRNs from experimental data
-
-exp_plot.py: combine figures
-
-grn0.png, grn1.png, grn2.png: figures of inferred GRNs for experimental data
-
-folder Experimental data/Exp data: three experimental data sets, revised from https://github.com/hmatsu1226/SCODE/blob/master/README.md
-
-.../data0: single-cell expression levels of mouse embryonic stem cells, https://www.nature.com/articles/s41467-018-02866-0
-
-.../data1: single-cell expression levels of mouse embryonic fibroblast cells, https://www.nature.com/articles/nature18323
-
-.../data2: single-cell expression levels of human embryonic stem cells, https://link.springer.com/article/10.1186/s13059-016-1033-x
-
-each data set has three files:
-
-.../expdata.txt: gene expression levels
-
-.../tf.txt: name of genes
-
-.../time.txt: measured time and inferred time (not used) of each cell
-
-folder Experimental data/Exp GRN: used to store plotted GRNs
+folder hESC: GRN (hESC_A.npy) and corresponding expression data (hESC_data....npy for six time points) from https://link.springer.com/article/10.1186/s13059-016-1033-x
