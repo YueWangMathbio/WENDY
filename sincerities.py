@@ -12,21 +12,24 @@ import pingouin as pg
 import pandas as pd
 
 def sincer(data, time_points):
-    gene_num = data.shape[2]
+    gene_num = data[0].shape[-1]
     tp_num = len(time_points)
 
     # used to calculate Spearman partial correlation
     pddata = pd.DataFrame()
     for i in range(gene_num):
-        pddata[str(i)] = np.ndarray.flatten(data[:, :, i])
+        temp = []
+        for j in range(tp_num):
+            temp = temp + list(data[j][:, i])
+        pddata[str(i)] = np.array(temp)
         
     
     # calculate DD (KS distance) for SINCERITIES
     ks_distance = np.zeros((tp_num - 1, gene_num))
     for i in range(tp_num - 1):
         for j in range(gene_num):
-            ks_distance[i, j] = scipy.stats.ks_2samp(data[i, :, j], \
-                                data[i+1, :, j])[0] / (time_points[i+1] - time_points[i])
+            ks_distance[i, j] = scipy.stats.ks_2samp(data[i][:, j], \
+                                data[i+1][:, j])[0] / (time_points[i+1] - time_points[i])
 
     # SINCERITIES algorithm
 

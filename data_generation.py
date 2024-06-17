@@ -19,13 +19,13 @@ def generation(network, time_points, sim_num):
     
     # read the true GRN
     if network < 10:
-        name = 'GRN/Ecoli10genes_' + str(network % 10) + '.npy'
+        name = 'SINC/Ecoli10genes_' + str(network % 10) + '.npy'
     elif network < 20:
-        name = 'GRN/Ecoli20genes_' + str(network % 10) + '.npy'
+        name = 'SINC/Ecoli20genes_' + str(network % 10) + '.npy'
     elif network < 30:
-        name = 'GRN/Yeast10genes_' + str(network % 10) + '.npy'
+        name = 'SINC/Yeast10genes_' + str(network % 10) + '.npy'
     elif network < 40:
-        name = 'GRN/Yeast20genes_' + str(network % 10) + '.npy'
+        name = 'SINC/Yeast20genes_' + str(network % 10) + '.npy'
     with open(name, 'rb') as f:
         A = np.load(f) # the GRN
     gene_num = len(A) # number of genes
