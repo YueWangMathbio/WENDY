@@ -10,7 +10,7 @@
 # see the SINCERETIES paper Section 3.1 for more details
 # https://academic.oup.com/bioinformatics/article/34/2/258/4158033
 """
-import sklearn
+import sklearn.metrics
 
 
 def directed_evaluation(A, result): # A is true GRN, result is inferred GRN
@@ -20,7 +20,7 @@ def directed_evaluation(A, result): # A is true GRN, result is inferred GRN
     sorted_result = [[result[i], i] for i in range(n ** 2) if i % (n + 1) != 0]
     sorted_result.sort(key = lambda x: abs(x[0]), reverse = True)
     tot = n ** 2 - n
-    nop = sum([A[i] != 0 for i in range(n ** 2)])
+    nop = sum([A[i] != 0 for i in range(n ** 2) if i % (n + 1) != 0])
     non = tot - nop
     tp = [0] * (tot + 1)
     tn = [non] * (tot + 1)
