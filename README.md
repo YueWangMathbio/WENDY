@@ -1,6 +1,14 @@
 # WENDY
 code files for WENDY method, used for inferring gene regulatory networks (GRN) from single-cell gene expression data
 
+see https://arxiv.org/abs/2407.00754 for the corresponding paper
+
+wendy algorithm itself needs the following packages: numpy, scipy, sklearn
+
+other algorithms and comparison files need extra packages: pingouin, pandas, xgboost
+
+warning: the NonlinearODEs algorithm (xgbgrn.py) runs well on Windows, but might crash on Mac
+
 -----------------------------------------------------------
 major code files:
 
