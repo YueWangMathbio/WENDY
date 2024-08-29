@@ -11,11 +11,9 @@ def wendy_alg(data0, data1): # each of input is numpy array or similar array,
 # with the shape of cell number * gene number
     gene_num = data0.shape[1] # number of genes
     temp = GraphicalLassoCV().fit(data0)
-    invcov_0 = np.around(temp.precision_, decimals=3)
-    k0 = np.linalg.inv(invcov_0) # covariance matrix at time 0
+    k0 = temp.covariance_ # covariance matrix at time 0
     temp = GraphicalLassoCV().fit(data1)
-    invcov_1 = np.around(temp.precision_, decimals=3)
-    kt = np.linalg.inv(invcov_1) # covariance matrix at time t
+    kt = temp.covariance_ # covariance matrix at time t
     lam = 0.0 # coefficient of an L2 regularizer, suggested to be 0
     weight = np.ones((gene_num, gene_num)) 
     for i in range(gene_num):
